@@ -2,7 +2,28 @@
 
 -- Get Names Table. Use either "career_firstnames", "career_lastnames" or "career_commonnames) after running it once.
 
+-- Get Names Table 1
 local names_table = LE.db:GetTable("career_firstnames")
+local current_record = names_table:GetFirstRecord()
+
+while current_record > 0 do
+    names_table:SetRecordFieldValue(current_record, "has_audio", 1)
+
+    current_record = names_table:GetNextValidRecord()
+end
+
+-- Get Names Table 2
+local names_table = LE.db:GetTable("career_lastnames")
+local current_record = names_table:GetFirstRecord()
+
+while current_record > 0 do
+    names_table:SetRecordFieldValue(current_record, "has_audio", 1)
+
+    current_record = names_table:GetNextValidRecord()
+end
+
+-- Get Names Table 3
+local names_table = LE.db:GetTable("career_commonnames")
 local current_record = names_table:GetFirstRecord()
 
 while current_record > 0 do
@@ -13,7 +34,6 @@ end
 
 MessageBox("Done", "Done")
 
-
 -- After you run this for the 3 database tables, run the "reload" command in the Live Editor to update the Database.
 
---- Bear in mind that this has to be run every time you launch the game, as these are not permanent after closing the game.
+--- Bear in mind that this has to be run every time you launch the game, as these are not permanent after closing the game. For permanent changes, see "Extended Youth Academy Namepool" mod by pup on https://dl.fifa-infinity.com
